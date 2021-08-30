@@ -1,0 +1,15 @@
+{
+  "name": "tekkensets",
+  "version": "1.0.0",
+  "description": "Pulls user's sets from Smash.gg and gets Tekken sets",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "aldrinRamiro",
+  "license": "ISC",
+  "dependencies": {
+    "graphql": "^15.5.2",
+    "graphql-request": "^3.5.0"
+  }
+}
