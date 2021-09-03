@@ -7,8 +7,6 @@ const AUTH_TOKEN = constants.AUTH_TOKEN;
 let playerId = "249741";
 let gameId = "17"; //Tekken
 
-
-
 const USERID_SET_QUERY = `\
     query SetsByPlayer ($playerId: ID!) {\
         player(id: $playerId) {\
@@ -41,9 +39,18 @@ async function main() {
     USERID_SET_QUERY,
     JSON.parse(REQUEST_VARIABLES)
   );
-  let data = JSON.stringify(rawData, undefined, 2); // TODO: remove last 2 arguments later
 
-  console.log(data);
+  let sets = rawData.player.sets.nodes;
+
+  let filteredSets = sets.reduce(function (filtered, set) {
+    if (set.displayScore != "DQ" && set.event.videogame.id == "17") {
+      filtered.push(set.displayScore);
+    }
+
+    return filtered;
+  }, []);
+
+  console.dir(filteredSets, { maxArrayLength: null });
 }
 
 main().catch((error) => console.error(error));
